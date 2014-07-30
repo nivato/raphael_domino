@@ -1,6 +1,6 @@
 html {
 	height: 100%;
-	background-color: #401600;
+	background-color: #777777;
 }
 
 body {
@@ -12,4 +12,9 @@ body {
 	font-family: serif;
 	font-size: 16px;
 	font-weight: bold;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: -moz-none;
+	-o-user-selec: none;
+	user-select: none;
 }

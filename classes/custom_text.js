@@ -9,7 +9,11 @@ CustomText.prototype.constructor = CustomText;
 CustomText.prototype.parent = Shape.prototype;
 
 CustomText.prototype.draw = function(){
-    var text_shape = this.paper.text(0, 0, this.text);
-    text_shape.attr({fill: '#222222', "font-family": "arial, serif", "font-weight": 700, "font-size": 14, stroke: "none", "text-anchor": "start"});
-    this.set.push(text_shape);
+    this.text_shape = this.paper.text(0, 0, this.text);
+    this.text_shape.attr({fill: '#222222', "font-family": "arial, serif", "font-weight": 700, "font-size": 14, stroke: "none", "text-anchor": "start"});
+    this.set.push(this.text_shape);
+};
+
+CustomText.prototype.attr = function(attr_obj){
+	this.text_shape.attr(attr_obj);
 };

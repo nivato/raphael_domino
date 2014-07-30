@@ -1,5 +1,8 @@
 function TileNumber(paper, number){
     this.parent.constructor.call(this, paper);
+    var dummy = this.paper.rect(0, 0, 1, 1);
+    dummy.attr({fill: 'white', 'fill-opacity': 0, stroke: 'none'});
+    this.set.push(dummy);
     this.number = number;
     this.dot_positions = {
         0: [],
