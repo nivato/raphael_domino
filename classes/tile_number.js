@@ -37,7 +37,7 @@ TileNumber.prototype.display_number = function(){
     this.set.hide();
     for (var i = 0; i < visible_dots.length; i++) {
         this.dots[visible_dots[i]].show();
-    };
+    }
 };
 
 TileNumber.prototype.set_number = function(number){
