@@ -39,6 +39,14 @@ Shape.prototype.translate = function(x, y){
     this.set.transform('...T' + x + ',' + y);
 };
 
+Shape.prototype.rotate = function(degrees, cx, cy){
+    this.set.transform('...R' + degrees + ',' + cx + ',' + cy);
+};
+  
+Shape.prototype.rotate_right = function(){
+    this.rotate(90, this.cx(), this.cy());
+};
+
 Shape.prototype.animate_rotation_left = function(){
     var animation = Raphael.animation({transform: '... R -90 ' + this.cx() + ' ' + this.cy()}, 500, "<>");
     this.set.animate(animation.repeat(1));
