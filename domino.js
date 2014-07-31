@@ -1,32 +1,21 @@
 var PAPER;
 var PIECE;
-var ROTATION = 0;
 
 function generate_new_piece(){
-	if (PIECE != undefined){
-		PIECE.remove();
+	if (PIECE !== undefined){
+		PIECE.reset();
+		return;
 	}
 	PIECE = new Piece(PAPER);
     PIECE.move_to(130, 50);
-    for (var i=0; i < ROTATION; i++){
-        PIECE.rotate_right();
-    }
 }
 
 function rotate_left(){
 	PIECE.animate_rotation_left();
-	ROTATION -= 1;
-	if (ROTATION < 0){
-	    ROTATION = 3;
-	}
 }
 
 function rotate_right(){
 	PIECE.animate_rotation_right();
-	ROTATION += 1;
-	if (ROTATION > 3){
-        ROTATION = 0;
-    }
 }
 
 function start(){

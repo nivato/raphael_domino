@@ -1,6 +1,5 @@
-function Tile(paper, number){
+function Tile(paper){
     this.parent.constructor.call(this, paper);
-    this.number = number;
     this.draw();
 }
 
@@ -11,7 +10,10 @@ Tile.prototype.parent = Shape.prototype;
 Tile.prototype.draw = function(){
     var tile = this.paper.rect(0, 0, 100, 100, 10);
     tile.attr({fill: "135-#999999-#ffffff", 'fill-opacity': 1, stroke: '#222222', 'stroke-width': 2});
-    this.set.push(tile);
-    var tile_number = new TileNumber(this.paper, this.number);
-    this.set.push(tile_number.set);
+    this.tile_number = new TileNumber(this.paper);
+    this.set.push(tile, this.tile_number.set);
+};
+
+Tile.prototype.set_number = function(number){
+    this.tile_number.set_number(number);
 };

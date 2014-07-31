@@ -1,17 +1,17 @@
-function TileNumber(paper, number){
+function TileNumber(paper){
     this.parent.constructor.call(this, paper);
     var dummy = this.paper.rect(0, 0, 1, 1);
     dummy.attr({fill: 'white', 'fill-opacity': 0, stroke: 'none'});
     this.set.push(dummy);
-    this.number = number;
-    this.dot_positions = {
+    this.dots = {};
+    this.num_dots_mapping = {
         0: [],
-        1: [[50, 50]],
-        2: [[30, 70], [70, 30]],
-        3: [[30, 70], [50, 50], [70, 30]],
-        4: [[30, 30], [70, 30], [30, 70], [70, 70]],
-        5: [[30, 30], [70, 30], [50, 50], [30, 70], [70, 70]],
-        6: [[30, 25], [70, 25], [30, 50], [70, 50], [30, 75], [70, 75]]
+        1: [5],
+        2: [3, 7],
+        3: [3, 5, 7],
+        4: [1, 3, 7, 9],
+        5: [1, 3, 5, 7, 9],
+        6: [1, 3, 4, 6, 7, 9]
     };
     this.draw();
 }
@@ -21,11 +21,26 @@ TileNumber.prototype.constructor = TileNumber;
 TileNumber.prototype.parent = Shape.prototype;
 
 TileNumber.prototype.draw = function(){
-    var positions = this.dot_positions[this.number];
-    for (var i = 0; i< positions.length; i++) {
-        var xy = positions[i];
-        var dot = this.paper.circle(xy[0], xy[1], 10);
-        dot.attr({fill: '135-#ffffff-#000000', 'fill-opacity': 1, stroke: '#666666', 'stroke-width': 1});
-        this.set.push(dot);
+    var xy_positions = [25, 50, 75];
+    for (var yi = 0; yi < xy_positions.length; yi++){
+        for (var xi = 0; xi < xy_positions.length; xi++){
+            var dot = this.paper.circle(xy_positions[xi], xy_positions[yi], 10);
+            dot.attr({fill: '135-#ffffff-#000000', 'fill-opacity': 1, stroke: '#666666', 'stroke-width': 1});
+            this.set.push(dot);
+            this.dots[(yi * 3) + xi + 1] = dot;
+        }
     }
+};
+
+TileNumber.prototype.display_number = function(){
+    var visible_dots = this.num_dots_mapping[this.number];
+    this.set.hide();
+    for (var i = 0; i < visible_dots.length; i++) {
+        this.dots[visible_dots[i]].show();
+    };
+};
+
+TileNumber.prototype.set_number = function(number){
+    this.number = number;
+    this.display_number();
 };

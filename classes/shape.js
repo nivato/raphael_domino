@@ -20,11 +20,11 @@ Shape.prototype.height = function(){
 };
 
 Shape.prototype.x2 = function(){
-    return this.x() + this.width();
+    return this.set.getBBox().x2;
 };
   
 Shape.prototype.y2 = function(){
-    return this.y() + this.height();
+    return this.set.getBBox().y2;
 };
 
 Shape.prototype.cx = function(){
@@ -48,12 +48,12 @@ Shape.prototype.rotate_right = function(){
 };
 
 Shape.prototype.animate_rotation_left = function(){
-    var animation = Raphael.animation({transform: '... R -90 ' + this.cx() + ' ' + this.cy()}, 500, "<>");
+    var animation = Raphael.animation({transform: '... R -90 ' + this.cx() + ' ' + this.cy()}, 400, '<>');
     this.set.animate(animation.repeat(1));
 };
 
 Shape.prototype.animate_rotation_right = function(){
-    var animation = Raphael.animation({transform: '... R 90 ' + this.cx() + ' ' + this.cy()}, 500, "<>");
+    var animation = Raphael.animation({transform: '... R 90 ' + this.cx() + ' ' + this.cy()}, 400, '<>');
     this.set.animate(animation.repeat(1));
 };
 
@@ -61,8 +61,4 @@ Shape.prototype.move_to = function(x, y){
     var delta_x = x - this.x();
     var delta_y = y - this.y();
     this.translate(delta_x, delta_y);
-};
-
-Shape.prototype.remove = function(){
-    this.set.remove();
 };
