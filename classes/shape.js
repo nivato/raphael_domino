@@ -1,7 +1,13 @@
 function Shape(paper){
     this.paper = paper;
-    this.set = this.paper.set();
+    this.set = this.paper.group();
 }
+
+Shape.prototype.push = function(){
+	for (var i = 0; i < arguments.length; i++) {
+		this.set.push(arguments[i]);
+    }
+};
 
 Shape.prototype.x = function(){
     return this.set.getBBox().x;
@@ -28,11 +34,11 @@ Shape.prototype.y2 = function(){
 };
 
 Shape.prototype.cx = function(){
-    return this.x() + this.width() / 2;
+    return this.set.getBBox().cx;
 };
 
 Shape.prototype.cy = function(){
-    return this.y() + this.height() / 2;
+    return this.set.getBBox().cy;
 };
 
 Shape.prototype.translate = function(x, y){
@@ -48,12 +54,12 @@ Shape.prototype.rotate_right = function(){
 };
 
 Shape.prototype.animate_rotation_left = function(){
-    var animation = Raphael.animation({transform: '... R -90 ' + this.cx() + ' ' + this.cy()}, 400, '<>');
+    var animation = Raphael.animation({transform: '... R -90 ' + this.cx() + ' ' + this.cy()}, 400, 'bounce');
     this.set.animate(animation.repeat(1));
 };
 
 Shape.prototype.animate_rotation_right = function(){
-    var animation = Raphael.animation({transform: '... R 90 ' + this.cx() + ' ' + this.cy()}, 400, '<>');
+    var animation = Raphael.animation({transform: '... R 90 ' + this.cx() + ' ' + this.cy()}, 400, 'bounce');
     this.set.animate(animation.repeat(1));
 };
 

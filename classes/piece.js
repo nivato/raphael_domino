@@ -26,7 +26,7 @@ Piece.prototype.draw = function(){
     this.bottom_tile = new Tile(this.paper);
     this.bottom_tile.move_to(10, 115);
     
-    this.set.push(piece_base_1, top_piece_side, left_piece_side, piece_base_2, this.top_tile.set, this.bottom_tile.set);
+    this.push(piece_base_1, top_piece_side, left_piece_side, piece_base_2, this.top_tile.set, this.bottom_tile.set);
     this.reset();
 };
 

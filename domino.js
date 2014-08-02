@@ -19,7 +19,7 @@ function rotate_right(){
 }
 
 function start(){
-    PAPER = Raphael(0, 0, 400, 400);
+    PAPER = Raphael(0, 0, 400, 400);    
     generate_new_piece();
     var left_button = new CustomButton(PAPER, 'Rotate Left');
     left_button.move_to(40, 350);

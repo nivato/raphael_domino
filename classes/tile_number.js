@@ -2,7 +2,7 @@ function TileNumber(paper){
     this.parent.constructor.call(this, paper);
     var dummy = this.paper.rect(0, 0, 1, 1);
     dummy.attr({fill: 'white', 'fill-opacity': 0, stroke: 'none'});
-    this.set.push(dummy);
+    this.push(dummy);
     this.dots = {};
     this.num_dots_mapping = {
         0: [],
@@ -26,7 +26,7 @@ TileNumber.prototype.draw = function(){
         for (var xi = 0; xi < xy_positions.length; xi++){
             var dot = this.paper.circle(xy_positions[xi], xy_positions[yi], 10);
             dot.attr({fill: '135-#ffffff-#000000', 'fill-opacity': 1, stroke: '#666666', 'stroke-width': 1});
-            this.set.push(dot);
+            this.push(dot);
             this.dots[(yi * 3) + xi + 1] = dot;
         }
     }
@@ -34,7 +34,11 @@ TileNumber.prototype.draw = function(){
 
 TileNumber.prototype.display_number = function(){
     var visible_dots = this.num_dots_mapping[this.number];
-    this.set.hide();
+    for (var key in this.dots) {
+        if (this.dots.hasOwnProperty(key)) {
+            this.dots[key].hide();
+        }
+    }
     for (var i = 0; i < visible_dots.length; i++) {
         this.dots[visible_dots[i]].show();
     }

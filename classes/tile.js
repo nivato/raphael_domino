@@ -11,7 +11,7 @@ Tile.prototype.draw = function(){
     var tile = this.paper.rect(0, 0, 100, 100, 10);
     tile.attr({fill: "135-#999999-#ffffff", 'fill-opacity': 1, stroke: '#222222', 'stroke-width': 2});
     this.tile_number = new TileNumber(this.paper);
-    this.set.push(tile, this.tile_number.set);
+    this.push(tile, this.tile_number.set);
 };
 
 Tile.prototype.set_number = function(number){

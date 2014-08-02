@@ -23,7 +23,7 @@ CustomButton.prototype.draw = function(){
     this.clickable = this.paper.rect(0, 0, b_width, b_height, 5);
     this.clickable.attr({fill: "white", 'fill-opacity': 0, stroke: 'none', cursor: 'pointer'});
     this.clickable.data({button: this});
-    this.set.push(this.button, this.text_shape.set, shine, this.clickable);
+    this.push(this.button, this.text_shape.set, shine, this.clickable);
     this.clickable.hover(this.highlight, this.fadeout);
 };
 
